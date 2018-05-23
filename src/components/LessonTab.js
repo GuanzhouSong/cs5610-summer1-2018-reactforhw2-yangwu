@@ -16,7 +16,7 @@ export default class LessonTab
 
         <td>
         <button onClick=
-        {() => this.props.deleteLesson(this.props.lesson.id)}
+        {() => {if(window.confirm('Delete?')) this.props.deleteLesson(this.props.lesson.id)}}
         className="btn btn-primary">Delete</button>
         </td>
             </tr>
