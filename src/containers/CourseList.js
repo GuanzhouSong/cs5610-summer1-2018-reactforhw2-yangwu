@@ -6,6 +6,7 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.state = {
+            course: { title: '' },
             courses: [{title: '', id: 123}]
         };
 
@@ -60,7 +61,9 @@ class CourseList extends React.Component {
         console.log("create course");
         this.courseService
             .createCourse(this.state.course)
-            .then(() => { this.findAllCourses(); });
+            .then(() => { this.findAllCourses();});
+        document.getElementById('titleFld').value = '';
+        this.setState({course: {title: ''}});
     }
 
     render() {

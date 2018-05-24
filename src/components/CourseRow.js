@@ -10,8 +10,7 @@ class CourseRow extends React.Component {
         return (
             <tr>
             <td>
-                <Link to=
-                          {`/course/${this.props.course.id}`}>
+                <Link to={`/course/${this.props.course.id}`}>
                     {this.props.course.title}
                 </Link>
             </td>
@@ -19,7 +18,7 @@ class CourseRow extends React.Component {
                 me
             </td>
             <td>
-                May 1, 2018
+                May 23, 2018
             </td>
                 <td>
                 <button onClick=

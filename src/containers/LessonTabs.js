@@ -52,6 +52,7 @@ export default class LessonTabs extends React.Component {
             .then(() => {
                 this.findAllLessonsForModule(this.props.moduleId);
             });
+        this.setState({lesson: {title: ''}});
     }
 
     titleChanged(event) {
@@ -89,7 +90,7 @@ export default class LessonTabs extends React.Component {
 
         return (
             <div>
-                <h3>Lesson List for module: {this.props.moduleId}</h3>
+                <h3>Lesson List for Module - {this.props.moduleId}</h3>
                 {/*<h3>Lesson List for module: {this.props.module.title}</h3>*/}
                 <table className="table">
                     <thead>

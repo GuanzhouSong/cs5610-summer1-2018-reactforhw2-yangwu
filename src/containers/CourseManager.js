@@ -1,9 +1,8 @@
-
 import React, {Component} from 'react'
 import CourseList from "./CourseList";
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 import CourseEditor from "./CourseEditor"
-import ModuleEditor from "./ModuleEditor";
+import { Link } from 'react-router-dom'
 
 export default class CourseManager
     extends Component {
@@ -12,7 +11,21 @@ export default class CourseManager
         return (
             <Router>
                 <div className="container-fluid">
+
+                    <tr>
+
+                    <th>
+                    <Link to={`/courses`}>
+                        <i className="fa fa-home fa-2x" id="homeBtn"></i>
+                    </Link>
+                    </th>
+
+                    <th>
                     <h1>Course Manager</h1>
+                    </th>
+
+                    </tr>
+
                     <Route path="/courses"
                            component={CourseList}>
                     </Route>
@@ -28,6 +41,8 @@ export default class CourseManager
         )
     }
 }
+
+
 
 
 

@@ -72,13 +72,13 @@ export default class ModuleList extends Component {
         console.log('delete');
         this.moduleService
             .deleteModule(moduleId)
-            .then(() => { this.findAllModulesForCourse(this.props.courseId)}); // fixme
+            .then(() => { this.findAllModulesForCourse(this.props.courseId)});
     }
 
     render() {
         return (
             <div>
-                <h3>Module List for course: {this.state.courseId}</h3>
+                <h3>Module List for Course - {this.state.courseId}</h3>
                 <table className="table">
                     <thead>
                     <tr>
