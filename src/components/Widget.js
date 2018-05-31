@@ -151,9 +151,6 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
     )
 };
 
-
-
-
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
 
 
@@ -209,7 +206,6 @@ const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
                 {widget.size == 1 && <h1>{widget.text}</h1>}
                 {widget.size == 2 && <h2>{widget.text}</h2>}
                 {widget.size == 3 && <h3>{widget.text}</h3>}
-
         </div>
     )
 };
