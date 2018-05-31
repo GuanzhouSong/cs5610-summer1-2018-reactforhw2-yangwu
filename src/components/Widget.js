@@ -49,15 +49,12 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
     return(
 
         <div>
-            <h2> Heading Widget {widget.size}</h2>
-            {/*<h2> Heading Widget</h2>*/}
             <div hidden={preview}>
-                {/*<form>*/}
+            <h2> Heading Widget {widget.size}</h2>
                 <input className="form-control" type="text" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node => inputElem = node}
                        placeholder="Heading text"/>
-
                 <select className="form-control" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
                         value={widget.size}
                         ref={node => selectElem = node}>
@@ -65,12 +62,10 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
                 </select>
-
                 <input className="form-control" onChange={() => headingNameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node => nameElem = node}
                 placeholder="Widget Name"/>
-
                 <h3>Preview</h3>
             </div>
                 {widget.size == 1 && <h1>{widget.text}</h1>}
@@ -78,7 +73,6 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
                 {widget.size == 3 && <h3>{widget.text}</h3>}
 
         </div>
-
     )
 };
 
@@ -90,6 +84,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
     let nameElem;
     return(
         <div>
+            <div hidden={preview}>
             <h2> Paragraph Widget </h2>
 
             <textarea onChange={() => paragraphTextChanged(widget.id, inputElem.value )}
@@ -104,7 +99,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
 
                 <h3>Preview</h3>
 
-
+            </div>
             {widget.size == 1 && <h1>{widget.text}</h1>}
             {widget.size == 2 && <h2>{widget.text}</h2>}
             {widget.size == 3 && <h3>{widget.text}</h3>}
@@ -122,8 +117,9 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
     let typeElem;
     return (
         <div>
-            <h2>List Widget</h2>
             <div hidden={preview}>
+            <h2>List Widget</h2>
+
                 <form>
                  <textarea onChange={() => listTextChanged(widget.id, inputElem.value)}
                            value={widget.text}
@@ -143,10 +139,10 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
                            placeholder="Widget name"/>
                 </form>
                 <h3>Preview</h3>
+            </div>
                 {widget.size == 1 && <h1>{widget.text}</h1>}
                 {widget.size == 2 && <h2>{widget.text}</h2>}
                 {widget.size == 3 && <h3>{widget.text}</h3>}
-            </div>
 
         </div>
     )
@@ -163,8 +159,9 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
     let nameElem;
     return (
         <div>
-            <h2>Image Widget</h2>
             <div hidden={preview}>
+            <h2>Image Widget</h2>
+
                 <input className="form-control" onChange={() => imageTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node => inputElem = node}
@@ -173,12 +170,12 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
                        value={widget.name}
                        ref={node => nameElem = node}
                        placeholder="image name"/>
-            </div>
+                <img src={widget.text}/>
             <h3>Preview</h3>
+            </div>
             {widget.size == 1 && <h1>{widget.text}</h1>}
             {widget.size == 2 && <h2>{widget.text}</h2>}
             {widget.size == 3 && <h3>{widget.text}</h3>}
-            <img src={widget.text}/>
         </div>
     )
 };
@@ -191,6 +188,7 @@ const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
     let nameElem;
     return (
         <div>
+            <div hidden={preview}>
             <h2>Link Widget</h2>
 
                 <input className="form-control" onChange={() => linkNameChanged(widget.id, nameElem.value)}
@@ -204,6 +202,7 @@ const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
                 placeholder="Link text"/>
 
                 <h3>Preview</h3>
+            </div>
                 {widget.size == 1 && <h1>{widget.text}</h1>}
                 {widget.size == 2 && <h2>{widget.text}</h2>}
                 {widget.size == 3 && <h3>{widget.text}</h3>}
@@ -220,7 +219,7 @@ const Widget = ({widget, preview, dispatch}) => {
     return(
         <li>
             <div hidden={preview}>
-                
+
                 <form className="form-inline">
                 <button>up</button>
                 <button>down</button>

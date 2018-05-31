@@ -229,7 +229,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         id: state.widgets.length + 1,
                         text: 'Widget text',
                         widgetType: 'Paragraph',
-                        size: '2'
+                        size: 2
 
                     }
                 ]
@@ -248,7 +248,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         title: 'default',
                         widgetType: 'Paragraph',
                         listType: 'ordered list',
-                        size:'1',
+                        size: 2,
                         // lessonId: action.lessonId,
                         lessonId:action.lessonId
                     }
