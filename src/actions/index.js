@@ -12,31 +12,10 @@ export const addWidgetByLesson = (dispatch, lessonId) => (
         lessonId: lessonId})
 )
 
-// export const findWidgetsByLesson = (dispatch, lessonId) => {
-//         console.log(lessonId);
-//         dispatch({
-//             type: constants.FIND_WIDGETS_BY_LESSON,
-//             lessonId: lessonId})
-// }
-
-// export const findWidgetsByLesson = (dispatch, lessonId) => {
-//     console.log(lessonId);
-//     fetch(WIDGET_LESSON_URL.replace('LID', lessonId))
-//         .then(response => (response.json))
-//         .then(widgets => dispatch({
-//         type: constants.FIND_WIDGETS_BY_LESSON,
-//         widgets: widgets}))
-// }
-
 export const findWidgetsByLesson = (dispatch, lessonId) => {
     dispatch({type: constants.FIND_WIDGETS_BY_LESSON,
     lessonId:lessonId})
 }
-
-// export const save = (dispatch, lessonId) => (
-//     dispatch({type: constants.SAVE,
-//     lessonId: lessonId})
-// )
 
 export const save = dispatch => (
     dispatch({type: constants.SAVE})
@@ -58,14 +37,6 @@ export const findAllWidgets = dispatch => {
             type: constants.FIND_ALL_WIDGETS,
             widgets: widgets }))
 }
-
-// export const findWidgetsById = dispatch => {
-//         fetch('http://localhost:8080/api/widget')
-//             .then(response => (response.json()))
-//             .then(widgets => dispatch({
-//                 type: constants.FIND_WIDGETS_BY_ID,
-//                 widgets: widgets}))
-// }
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (
     dispatch({
@@ -94,9 +65,6 @@ export const headingNameChanged = (dispatch, widgetId, newName) => (
         id: widgetId,
         name: newName})
 )
-
-//  listNameChanged, listTypeChanged, listTextChanged
-// imageTextChanged, imageNameChanged
 
 export const listTypeChanged = (dispatch, widgetId, newListType) => (
     dispatch({

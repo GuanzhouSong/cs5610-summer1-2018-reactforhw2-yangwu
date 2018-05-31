@@ -1,10 +1,8 @@
 import * as constants from "../constants/index"
 const WIDGET_SAVE_URL =
     'http://localhost:8080/api/lesson/LID/widget/save';
-
 const WIDGET_LESSON_URL =
     'http://localhost:8080/api/lesson/LID/widget';
-
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
     let newState

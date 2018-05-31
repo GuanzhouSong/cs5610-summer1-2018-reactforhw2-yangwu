@@ -3,50 +3,6 @@ import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 
-const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headingNameChanged}) => {
-    let selectElem;
-    let inputElem;
-    let nameElem;
-
-    return(
-        <div>
-            {/*<h2> Heading Widget {widget.size}</h2>*/}
-            <h2> Heading Widget</h2>
-            <div hidden={preview}>
-                {/*<form>*/}
-                <input className="form-control" type="text" onChange={() => headingTextChanged(widget.id, inputElem.value)}
-                       value={widget.text}
-                       ref={node => inputElem = node}
-                       placeholder="Heading text"/>
-
-                <select className="form-control" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
-                        value={widget.size}
-                        ref={node => selectElem = node}>
-                    <option value="1">Heading 1</option>
-                    <option value="2">Heading 2</option>
-                    <option value="3">Heading 3</option>
-                </select>
-
-                <input className="form-control" onChange={() => headingNameChanged(widget.id, nameElem.value)}
-                       value={widget.name}
-                       ref={node => nameElem = node}
-                placeholder="Widget Name"/>
-                {/*<button onClick=*/}
-                            {/*{() => widgetDelete}*/}
-                        {/*className="btn btn-primary">Delete</button>*/}
-
-                <h3>Preview</h3>
-
-                {/*</form>*/}
-
-            {widget.size == 1 && <h1>{widget.text}</h1>}
-            {widget.size == 2 && <h2>{widget.text}</h2>}
-            {widget.size == 3 && <h3>{widget.text}</h3>}
-            </div>
-        </div>
-    )
-};
-
 const dispatchToPropsMapper = dispatch => ({
     headingTextChanged: (widgetId, newText) =>
         actions.headingTextChanged(dispatch, widgetId, newText),
@@ -78,22 +34,65 @@ const dispatchToPropsMapper = dispatch => ({
         actions.linkNameChanged(dispatch, widgetId, newName),
 });
 
+
+
 const stateToPropsMapper = state => ({
     preview: state.preview
 });
 
+
+const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headingNameChanged}) => {
+    let selectElem;
+    let inputElem;
+    let nameElem;
+    console.log(widget.size)
+    return(
+
+        <div>
+            <h2> Heading Widget {widget.size}</h2>
+            {/*<h2> Heading Widget</h2>*/}
+            <div hidden={preview}>
+                {/*<form>*/}
+                <input className="form-control" type="text" onChange={() => headingTextChanged(widget.id, inputElem.value)}
+                       value={widget.text}
+                       ref={node => inputElem = node}
+                       placeholder="Heading text"/>
+
+                <select className="form-control" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                        value={widget.size}
+                        ref={node => selectElem = node}>
+                    <option value="1">Heading 1</option>
+                    <option value="2">Heading 2</option>
+                    <option value="3">Heading 3</option>
+                </select>
+
+                <input className="form-control" onChange={() => headingNameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       ref={node => nameElem = node}
+                placeholder="Widget Name"/>
+
+                <h3>Preview</h3>
+            </div>
+                {widget.size == 1 && <h1>{widget.text}</h1>}
+                {widget.size == 2 && <h2>{widget.text}</h2>}
+                {widget.size == 3 && <h3>{widget.text}</h3>}
+
+        </div>
+
+    )
+};
+
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading);
 
-const Paragraph = (widget, preview, paragraphTextChanged, paragraphNameChanged) => {
-
+const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}) => {
     console.log(widget.id);
-    let inputElem;
+    let inputElem ;
     let nameElem;
     return(
         <div>
             <h2> Paragraph Widget </h2>
 
-            <textarea onChange={() => paragraphTextChanged(widget.id, inputElem.value)}
+            <textarea onChange={() => paragraphTextChanged(widget.id, inputElem.value )}
                        value={widget.text}
                        ref={node => inputElem = node}
                     placeholder="Widget text"/>
@@ -105,17 +104,13 @@ const Paragraph = (widget, preview, paragraphTextChanged, paragraphNameChanged) 
 
                 <h3>Preview</h3>
 
-            {/*<h2>{widget.text}</h2>*/}
+
             {widget.size == 1 && <h1>{widget.text}</h1>}
             {widget.size == 2 && <h2>{widget.text}</h2>}
             {widget.size == 3 && <h3>{widget.text}</h3>}
-            {/*</div>*/}
+
         </div>
     )
-
-
-
-
 };
 
 const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph);
@@ -148,12 +143,17 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
                            placeholder="Widget name"/>
                 </form>
                 <h3>Preview</h3>
-
+                {widget.size == 1 && <h1>{widget.text}</h1>}
+                {widget.size == 2 && <h2>{widget.text}</h2>}
+                {widget.size == 3 && <h3>{widget.text}</h3>}
             </div>
 
         </div>
     )
 };
+
+
+
 
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
 
@@ -174,6 +174,11 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
                        ref={node => nameElem = node}
                        placeholder="image name"/>
             </div>
+            <h3>Preview</h3>
+            {widget.size == 1 && <h1>{widget.text}</h1>}
+            {widget.size == 2 && <h2>{widget.text}</h2>}
+            {widget.size == 3 && <h3>{widget.text}</h3>}
+            <img src={widget.text}/>
         </div>
     )
 };
@@ -181,13 +186,13 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
 const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image)
 
 
-const Link = (widget, preview, linkNameChanged, linkTextChanged) => {
+const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
     let inputElem;
     let nameElem;
     return (
         <div>
             <h2>Link Widget</h2>
-            {/*<div hidden={preview}>*/}
+
                 <input className="form-control" onChange={() => linkNameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node=> nameElem = node}
@@ -199,8 +204,9 @@ const Link = (widget, preview, linkNameChanged, linkTextChanged) => {
                 placeholder="Link text"/>
 
                 <h3>Preview</h3>
-
-            {/*</div>*/}
+                {widget.size == 1 && <h1>{widget.text}</h1>}
+                {widget.size == 2 && <h2>{widget.text}</h2>}
+                {widget.size == 3 && <h3>{widget.text}</h3>}
 
         </div>
     )
@@ -214,8 +220,10 @@ const Widget = ({widget, preview, dispatch}) => {
     return(
         <li>
             <div hidden={preview}>
-                {/*{widget.id} {widget.widgetType}*/}
-
+                
+                <form className="form-inline">
+                <button>up</button>
+                <button>down</button>
                 <select className="form-control" value={widget.widgetType}
                         onChange={e =>
                             dispatch({
@@ -233,7 +241,8 @@ const Widget = ({widget, preview, dispatch}) => {
                 <button className="btn btn-primary" onClick={e => (
                     dispatch({type: DELETE_WIDGET, id: widget.id})
                 )}>Delete</button>
-            </div>
+                </form>
+
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <ParagraphContainer widget={widget}/>}
@@ -241,9 +250,11 @@ const Widget = ({widget, preview, dispatch}) => {
                 {widget.widgetType==='Image' && <ImageContainer widget={widget}/>}
                 {widget.widgetType==='Link' && <LinkContainer widget={widget}/>}
             </div>
+            </div>
         </li>
     )
 };
+
 
 const WidgetContainer = connect(state => ({
     preview: state.preview
