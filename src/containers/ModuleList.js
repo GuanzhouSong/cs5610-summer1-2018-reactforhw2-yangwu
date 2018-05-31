@@ -49,6 +49,7 @@ export default class ModuleList extends Component {
         this.setState({module: {title: ''}});
 
     }
+
     titleChanged(event) {
         console.log(event.target.value);
         this.setState({module: {title: event.target.value}});

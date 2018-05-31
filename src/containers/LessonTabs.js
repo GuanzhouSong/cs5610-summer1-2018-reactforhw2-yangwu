@@ -9,6 +9,7 @@ export default class LessonTabs extends React.Component {
         console.log(props);
         this.state = {
             moduleId: '',
+            courseId: '',
             lesson: { title: '' },
             lessons: []
         };
@@ -16,6 +17,7 @@ export default class LessonTabs extends React.Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -35,13 +37,19 @@ export default class LessonTabs extends React.Component {
         this.setState({moduleId: moduleId});
     }
 
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
+    }
+
     componentDidMount() {
         this.setModuleId(this.props.moduleId);
+        this.setCourseId(this.props.courseId);
     }
 
     componentWillReceiveProps(newProps) {
         console.log(newProps);
         this.setModuleId(newProps.moduleId);
+        this.setCourseId(newProps.courseId);
         this.findAllLessonsForModule(newProps.moduleId)
     }
 
@@ -75,7 +83,8 @@ export default class LessonTabs extends React.Component {
         if (this.state) {
             lessons = this.state.lessons.map(
                 (lesson) => {
-                    return <LessonTab moduleId={this.props.moduleId} lesson={lesson} key={lesson.id} deleteLesson={this.deleteLesson}/>
+                    return <LessonTab courseId={this.props.courseId} moduleId={this.props.moduleId} lesson={lesson}
+                                      key={lesson.id} deleteLesson={this.deleteLesson}/>
                 });
         }
         return (
@@ -83,15 +92,12 @@ export default class LessonTabs extends React.Component {
         )
     }
 
-
-
     render() {
         console.log(this.state);
 
         return (
             <div>
                 <h3>Lesson List for Module - {this.props.moduleId}</h3>
-                {/*<h3>Lesson List for module: {this.props.module.title}</h3>*/}
                 <table className="table">
                     <thead>
                     <tr>
