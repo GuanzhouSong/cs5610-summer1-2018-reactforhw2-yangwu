@@ -91,7 +91,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
             <textarea onChange={() => paragraphTextChanged(widget.id, inputElem.value )}
                        value={widget.text}
                        ref={node => inputElem = node}
-                    placeholder="Widget text"/>
+                    placeholder="Paragraph text"/>
 
             <input className="form-control" onChange={() => paragraphNameChanged(widget.id, nameElem.value)}
                    value={widget.name}
@@ -165,11 +165,11 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
                 <input className="form-control" onChange={() => imageTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node => inputElem = node}
-                       placeholder="image url"/>
+                       placeholder="Image URL"/>
                 <input className="form-control" onChange={() => imageNameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node => nameElem = node}
-                       placeholder="image name"/>
+                       placeholder="Widget name"/>
                 <img src={widget.text}/>
             <h3>Preview</h3>
             </div>
@@ -191,15 +191,16 @@ const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
             <div hidden={preview}>
             <h2>Link Widget</h2>
 
-                <input className="form-control" onChange={() => linkNameChanged(widget.id, nameElem.value)}
-                       value={widget.name}
-                       ref={node=> nameElem = node}
-                placeholder="Link name"/>
+
 
                 <input className="form-control" onChange={() => linkTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node=> inputElem = node}
-                placeholder="Link text"/>
+                placeholder="Link URL"/>
+                <input className="form-control" onChange={() => linkNameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       ref={node=> nameElem = node}
+                       placeholder="Widget name"/>
 
                 <h3>Preview</h3>
             </div>

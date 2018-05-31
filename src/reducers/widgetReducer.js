@@ -229,8 +229,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         id: state.widgets.length + 1,
                         text: 'Widget text',
                         widgetType: 'Heading',
-                        size: 1
-
+                        size: 1,
+                        name: 'Widget name',
+                        listType: 'Unordered list'
                     }
                 ]
             }
