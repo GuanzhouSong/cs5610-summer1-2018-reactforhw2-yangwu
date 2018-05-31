@@ -68,6 +68,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
                 placeholder="Widget Name"/>
                 <h3>Preview</h3>
             </div>
+
                 {widget.size == 1 && <h1>{widget.text}</h1>}
                 {widget.size == 2 && <h2>{widget.text}</h2>}
                 {widget.size == 3 && <h3>{widget.text}</h3>}
@@ -100,9 +101,11 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
                 <h3>Preview</h3>
 
             </div>
+
             {widget.size == 1 && <h1>{widget.text}</h1>}
             {widget.size == 2 && <h2>{widget.text}</h2>}
             {widget.size == 3 && <h3>{widget.text}</h3>}
+
 
         </div>
     )
@@ -241,14 +244,14 @@ const Widget = ({widget, preview, dispatch}) => {
                     dispatch({type: DELETE_WIDGET, id: widget.id})
                 )}>Delete</button>
                 </form>
-
+            </div>
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <ParagraphContainer widget={widget}/>}
                 {widget.widgetType==='List' && <ListContainer widget={widget}/>}
                 {widget.widgetType==='Image' && <ImageContainer widget={widget}/>}
                 {widget.widgetType==='Link' && <LinkContainer widget={widget}/>}
-            </div>
+
             </div>
         </li>
     )
