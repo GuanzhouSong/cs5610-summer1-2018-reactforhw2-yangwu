@@ -12,14 +12,6 @@ export const addWidgetByLesson = (dispatch, lessonId) => (
         lessonId: lessonId})
 )
 
-// export const findWidgetsByLesson = (dispatch, lessonId) => (
-//     dispatch({
-//         type: constants.FIND_WIDGETS_BY_LESSON,
-//         lessonId:lessonId})
-// )
-//
-
-
 export const save = dispatch => (
     dispatch({type: constants.SAVE})
 )
@@ -135,3 +127,10 @@ export const linkTextChanged = (dispatch, widgetId, newText) => (
         id: widgetId,
         text: newText})
 )
+
+export const linkUrlChanged = (dispatch, widgetId, newLink) => (
+    dispatch({
+        type: constants.LINK_URL_CHANGED,
+        id: widgetId,
+        href: newLink})
+);

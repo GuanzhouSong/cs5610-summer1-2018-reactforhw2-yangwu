@@ -25,6 +25,6 @@ export const IMAGE_NAME_CHANGED = 'IMAGE_NAME_CHANGED'
 
 export const LINK_TEXT_CHANGED = 'LINK_TEXT_CHANGED'
 export const LINK_NAME_CHANGED = 'LINK_NAME_CHANGED'
-
-//  listNameChanged, listTypeChanged, listTextChanged
-// imageTextChanged, imageNameChanged
+export const LINK_URL_CHANGED = 'LINK_URL_CHANGED'
+export const WIDGET_MOVE_UP = 'MOVE_UP';
+export const WIDGET_MOVE_DOWN = 'MOVE_DOWN';

@@ -1,8 +1,11 @@
 import * as constants from "../constants/index"
+
+
 const WIDGET_SAVE_URL =
     'http://localhost:8080/api/lesson/LID/widget/save';
 const WIDGET_LESSON_URL =
     'http://localhost:8080/api/lesson/LID/widget';
+
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
     let newState
@@ -149,31 +152,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             }
             return JSON.parse(JSON.stringify(newState))
 
-        // case constants.SAVE:
-        //     console.log(state.widgets);
-        //     fetch('http://localhost:8080/api/widget/save', { // how to populate LID based on different widget FIXME
-        //         method: 'post',
-        //         body: JSON.stringify(state.widgets),
-        //         headers: {
-        //             'content-type': 'application/json'}
-        //     })
-        //
-        //     return state
 
-        // case constants.SAVE:
-        //     console.log(state.widgets);
-        //
-        //     for (var i = 0; i < state.widgets.length; i++) {
-        //     fetch(WIDGET_SAVE_URL.replace('LID', state.widgets[i].lessonId), {
-        //         method: 'post',
-        //         body: JSON.stringify(state.widgets[i]),
-        //         headers: {
-        //             'content-type': 'application/json'
-        //         }
-        //     })
-        // }
-        //
-        //     return state
 
         case constants.SAVE:
             fetch('http://localhost:8080/api/widget/save', {
@@ -202,25 +181,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             newState.widgets = action.widgets
             return newState
 
-        // case constants.FIND_WIDGETS_BY_LESSON:
-        //     console.log(state.widgets);
-        //    return {
-        //        widgets: state.widgets.filter(widget => (
-        //            widget.lessonId === action.lessonId
-        //            )
-        //        )
-        //    }
-
         case constants.FIND_WIDGETS_BY_LESSON:
             newState = Object.assign({}, state)
             newState.widgets = action.widgets
             return newState
-
-
-        // case constants.FIND_WIDGETS_BY_LESSON:
-        //     newState = Object.assign({}, state)
-        //     newState.widgets = action.widgets
-        //     return newState
 
         case constants.DELETE_WIDGET:
             return {
@@ -240,7 +204,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widgetType: 'Heading',
                         size: 1,
                         name: '',
-                        listType: 'Unordered list'
+                        listType: 'Unordered list',
+                        widgetOrder: state.widgets.length + 1,
+                        href:''
                     }
                 ]
             }
@@ -259,11 +225,21 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widgetType: 'Paragraph',
                         listType: 'ordered list',
                         size: 2,
-                        // lessonId: action.lessonId,
                         lessonId:action.lessonId
                     }
                 ]
             }
+
+        case constants.LINK_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.href = action.href
+                    }
+                    return Object.assign({}, widget);
+                })
+            }
+
 
         default:
             return state

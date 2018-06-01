@@ -20,7 +20,8 @@ const dispatchToPropsMapper = dispatch => ({
         actions.listTypeChanged(dispatch, widgetId, newType),
     listTextChanged: (widgetId, newText) =>
         actions.listTextChanged(dispatch, widgetId, newText),
-
+    linkUrlChanged: (widgetId, newUrl) =>
+        actions.linkUrlChanged(dispatch, widgetId, newUrl),
     imageTextChanged: (widgetId, newText) =>
         actions.imageTextChanged(dispatch, widgetId, newText),
     imageNameChanged: (widgetId, newName) =>
@@ -167,12 +168,14 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
                        value={widget.name}
                        ref={node => nameElem = node}
                        placeholder="Widget name"/>
-                <img src={widget.text}/>
+                {/*<img src={widget.text}/>*/}
             <h3>Preview</h3>
             </div>
-            {widget.size == 1 && <h1>{widget.text}</h1>}
-            {widget.size == 2 && <h2>{widget.text}</h2>}
-            {widget.size == 3 && <h3>{widget.text}</h3>}
+            <img className="img-responsive img-thumbnail" src={widget.text}></img>
+            <br/>
+            {/*{widget.size == 1 && <h1>{widget.text}</h1>}*/}
+            {/*{widget.size == 2 && <h2>{widget.text}</h2>}*/}
+            {/*{widget.size == 3 && <h3>{widget.text}</h3>}*/}
         </div>
     )
 };
@@ -180,20 +183,25 @@ const Image = ({widget, preview, imageNameChanged, imageTextChanged}) => {
 const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image)
 
 
-const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
+const Link = ({widget, preview, linkUrlChanged, linkNameChanged, linkTextChanged}) => {
     let inputElem;
     let nameElem;
+    let urlElem;
     return (
         <div>
             <div hidden={preview}>
             <h2>Link Widget</h2>
 
-
+                <input className="form-control" onChange={() => linkUrlChanged(widget.id, inputElem.value)}
+                       value={widget.href}
+                       ref={node=> urlElem = node}
+                       placeholder="Link URL"/>
 
                 <input className="form-control" onChange={() => linkTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node=> inputElem = node}
-                placeholder="Link URL"/>
+                placeholder="Link text"/>
+
                 <input className="form-control" onChange={() => linkNameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node=> nameElem = node}
@@ -201,9 +209,11 @@ const Link = ({widget, preview, linkNameChanged, linkTextChanged}) => {
 
                 <h3>Preview</h3>
             </div>
-                {widget.size == 1 && <h1>{widget.text}</h1>}
-                {widget.size == 2 && <h2>{widget.text}</h2>}
-                {widget.size == 3 && <h3>{widget.text}</h3>}
+            <h2><a href={widget.href} target="_blank">{widget.text}</a></h2>
+            <br/>
+                {/*{widget.size == 1 && <h1>{widget.text}</h1>}*/}
+                {/*{widget.size == 2 && <h2>{widget.text}</h2>}*/}
+                {/*{widget.size == 3 && <h3>{widget.text}</h3>}*/}
         </div>
     )
 };
@@ -218,8 +228,8 @@ const Widget = ({widget, preview, dispatch}) => {
             <div hidden={preview}>
 
                 <form className="form-inline">
-                <button>up</button>
-                <button>down</button>
+                    <button>up</button>
+                    <button>down</button>
                 <select className="form-control" value={widget.widgetType}
                         onChange={e =>
                             dispatch({
@@ -234,9 +244,10 @@ const Widget = ({widget, preview, dispatch}) => {
                     <option>Link</option>
                 </select>
 
-                <button className="btn btn-primary" onClick={e => (
-                    dispatch({type: DELETE_WIDGET, id: widget.id})
-                )}>Delete</button>
+                    <button className="btn btn-primary" onClick={e => (
+                        dispatch({type: DELETE_WIDGET, id: widget.id})
+                    )}>Delete</button>
+
                 </form>
             </div>
             <div>
