@@ -12,17 +12,20 @@ export const addWidgetByLesson = (dispatch, lessonId) => (
         lessonId: lessonId})
 )
 
-export const findWidgetsByLesson = (dispatch, lessonId) => {
-    dispatch({type: constants.FIND_WIDGETS_BY_LESSON,
-    lessonId:lessonId})
-}
+// export const findWidgetsByLesson = (dispatch, lessonId) => (
+//     dispatch({
+//         type: constants.FIND_WIDGETS_BY_LESSON,
+//         lessonId:lessonId})
+// )
+//
+
 
 export const save = dispatch => (
     dispatch({type: constants.SAVE})
 )
 
-export const saveWidgetsByLesson = (dispatch, lessonId) => {
-    dispatch({type: constants.SAVE_WIDGETS_BY_LESSON,
+export const saveWidgetByLesson = (dispatch, lessonId) => {
+    dispatch({type: constants.SAVE_WIDGET_BY_LESSON,
     lessonId: lessonId})
 }
 
@@ -36,6 +39,16 @@ export const findAllWidgets = dispatch => {
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
             widgets: widgets }))
+}
+
+export const findWidgetsByLesson = (dispatch, lessonId) => {
+    fetch(WIDGET_LESSON_URL.replace('LID', lessonId))
+        .then(response => (response.json()))
+        .then(widgets =>
+            dispatch({
+            type: constants.FIND_WIDGETS_BY_LESSON,
+            widgets: widgets
+        }))
 }
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (

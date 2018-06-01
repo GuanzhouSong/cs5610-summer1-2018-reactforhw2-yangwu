@@ -97,6 +97,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             }
 
+        case constants.LIST_TYPE_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.listType = action.listType
+                    }
+                    return Object.assign({}, widget)
+        })
+            }
+
         case constants.IMAGE_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
@@ -176,14 +186,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
             return state
 
-        // case constants.SAVE_WIDGETS_BY_LESSON:
-        //     fetch(WIDGET_SAVE_URL.replace('LID', action.lessonId), {
-        //         method: 'post',
-        //         body: JSON.stringify(state.widgets),
-        //         headers: {
-        //             'content-type': 'application/json'
-        //         }
-        //     }
+        case constants.SAVE_WIDGET_BY_LESSON:
+            fetch(WIDGET_SAVE_URL.replace('LID', action.lessonId), {
+                method: 'post',
+                body: JSON.stringify(state.widgets),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+
+            return state
 
         case constants.FIND_ALL_WIDGETS:
             newState = Object.assign({}, state)
@@ -200,13 +212,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         //    }
 
         case constants.FIND_WIDGETS_BY_LESSON:
-            fetch(WIDGET_LESSON_URL.replace('LID', action.lessonId), {
-                method: 'get',
-                headers: {
-                       'content-type': 'application/json'
-            }
-         })
-        return state
+            newState = Object.assign({}, state)
+            newState.widgets = action.widgets
+            return newState
+
 
         // case constants.FIND_WIDGETS_BY_LESSON:
         //     newState = Object.assign({}, state)

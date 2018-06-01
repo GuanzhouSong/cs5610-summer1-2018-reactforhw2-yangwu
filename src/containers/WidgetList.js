@@ -6,22 +6,45 @@ import WidgetContainer from '../components/Widget'
 class WidgetList extends Component {
     constructor(props) {
         super(props);
-        this.props.findAllWidgets()
+        // this.props.findAllWidgets()
+        this.props.findWidgetsByLesson(this.props.lessonId);
+    }
+
+    componentDidMount() {
+        this.props.findWidgetsByLesson(this.props.lessonId)
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.lessonId !== this.props.lessonId) {
+            this.props.findWidgetsByLesson(newProps.lessonId)
+        }
     }
 
     render() {
+        console.log(this.props.lessonId)
         return (
+
             <div>
-                <h2>Widget List {this.props.widgets.length}</h2>
+
+                <form className="form-inline">
+                <h2>Widget List </h2>
+
                 <button type="button" className="btn btn-info" hidden={this.props.previewMode}
-                        onClick={this.props.save}>
+                        onClick={() => this.props.saveWidgetByLesson(this.props.lessonId)}>
                     Save
                 </button>
+
+                    {/*<button type="button" className="btn btn-info" hidden={this.props.previewMode}*/}
+                            {/*onClick={() => this.props.saveWidgetByLesson(this.props.lessonId)}>*/}
+                        {/*Save*/}
+                    {/*</button>*/}
 
                 <button type="button" className="btn btn-info" onClick={this.props.preview}>
                     Preview
                 </button>
 
+
+                </form>
 
                 <ul>
 
@@ -34,6 +57,9 @@ class WidgetList extends Component {
 
 
                 <button className="btn btn-primary" onClick={this.props.addWidget}>Add widget</button>
+
+
+                {/*<button className="btn btn-primary" onClick={this.props.addWidgetByLesson(this.props.lessonId)}>Add widget</button>*/}
 
             </div>
         );
@@ -50,6 +76,7 @@ const dispatcherToPropsMapper = dispatch => ({
     addWidget: () => actions.addWidget(dispatch),
     addWidgetByLesson: (lessonId) => actions.addWidgetByLesson(dispatch, lessonId),
     save: () => actions.save(dispatch),
+    saveWidgetByLesson: (lessonId) => actions.saveWidgetByLesson(dispatch, lessonId),
     preview: () => actions.preview(dispatch),
     findWidgetsByLesson: (lessonId) => actions.findWidgetsByLesson(dispatch, lessonId)
 })

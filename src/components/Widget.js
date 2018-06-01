@@ -10,12 +10,10 @@ const dispatchToPropsMapper = dispatch => ({
         actions.headingSizeChanged(dispatch, widgetId, newSize),
     headingNameChanged: (widgetId, newName) =>
         actions.headingNameChanged(dispatch, widgetId, newName),
-
     paragraphTextChanged: (widgetId, newText) =>
         actions.paragraphTextChanged(dispatch, widgetId, newText),
     paragraphNameChanged: (widgetId, newName) =>
         actions.paragraphNameChanged(dispatch, widgetId, newName),
-
     listNameChanged: (widgetId, newName) =>
         actions.listNameChanged(dispatch, widgetId, newName),
     listTypeChanged: (widgetId, newType) =>
@@ -27,13 +25,11 @@ const dispatchToPropsMapper = dispatch => ({
         actions.imageTextChanged(dispatch, widgetId, newText),
     imageNameChanged: (widgetId, newName) =>
         actions.imageNameChanged(dispatch, widgetId, newName),
-
     linkTextChanged: (widgetId, newText) =>
         actions.linkTextChanged(dispatch, widgetId, newText),
     linkNameChanged: (widgetId, newName) =>
         actions.linkNameChanged(dispatch, widgetId, newName),
 });
-
 
 
 const stateToPropsMapper = state => ({
@@ -118,6 +114,7 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
     let inputElem;
     let nameElem;
     let typeElem;
+    console.log(widget.listType)
     return (
         <div>
             <div hidden={preview}>
@@ -143,9 +140,9 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
                 </form>
                 <h3>Preview</h3>
             </div>
-                {widget.size == 1 && <h1>{widget.text}</h1>}
-                {widget.size == 2 && <h2>{widget.text}</h2>}
-                {widget.size == 3 && <h3>{widget.text}</h3>}
+
+            {widget.listType === "Unordered list" && <ul>{widget.text.split('\n').map(item => (<li key={item.id}>{item}</li>))}</ul>}
+            {widget.listType === "ordered list" && <ol>{widget.text.split('\n').map(item => (<li key={item.id}>{item}</li>))}</ol>}
 
         </div>
     )
