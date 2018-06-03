@@ -98,7 +98,7 @@ class CourseList extends React.Component {
 
                 {/*</table>*/}
 
-                <table className="table table-striped">
+                <table className="table">
                     <thead>
                     <tr>
                         <th scope='col'>Title</th>
