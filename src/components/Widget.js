@@ -2,6 +2,7 @@ import React from  'react'
 import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
+import * as constants from '../constants'
 
 const dispatchToPropsMapper = dispatch => ({
     headingTextChanged: (widgetId, newText) =>
@@ -47,7 +48,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, headi
 
         <div>
             <div hidden={preview}>
-            <h2> Heading Widget {widget.size}</h2>
+            <h2> Heading Widget</h2>
                 <input className="form-control" type="text" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node => inputElem = node}
@@ -85,7 +86,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, paragraphNameChanged}
             <div hidden={preview}>
             <h2> Paragraph Widget </h2>
 
-            <textarea onChange={() => paragraphTextChanged(widget.id, inputElem.value )}
+            <textarea className="form-control" onChange={() => paragraphTextChanged(widget.id, inputElem.value )}
                        value={widget.text}
                        ref={node => inputElem = node}
                     placeholder="Paragraph text"/>
@@ -122,7 +123,7 @@ const List = ({widget, preview, listNameChanged, listTextChanged, listTypeChange
             <h2>List Widget</h2>
 
                 <form>
-                 <textarea onChange={() => listTextChanged(widget.id, inputElem.value)}
+                 <textarea className="form-control" onChange={() => listTextChanged(widget.id, inputElem.value)}
                            value={widget.text}
                            ref={node => inputElem = node}
                            placeholder="Enter one list item per line"/>
@@ -192,7 +193,7 @@ const Link = ({widget, preview, linkUrlChanged, linkNameChanged, linkTextChanged
             <div hidden={preview}>
             <h2>Link Widget</h2>
 
-                <input className="form-control" onChange={() => linkUrlChanged(widget.id, inputElem.value)}
+                <input className="form-control" onChange={() => linkUrlChanged(widget.id, urlElem.value)}
                        value={widget.href}
                        ref={node=> urlElem = node}
                        placeholder="Link URL"/>
@@ -227,9 +228,13 @@ const Widget = ({widget, preview, dispatch}) => {
         <li>
             <div hidden={preview}>
 
-                <form className="form-inline">
-                    <button>up</button>
-                    <button>down</button>
+                <form className="form-inline float-right">
+                    {/*<button><i className="fa fa-arrow-up"></i> </button>*/}
+                    {/*<button><i className="fa fa-arrow-down"></i></button>*/}
+
+                    <button onClick={() => (dispatch({type: constants.WIDGET_MOVE_UP, widgetOrder: widget.widgetOrder}))}><i className="fa fa-arrow-up"></i> </button>
+                    <button onClick={() => (dispatch({type: constants.WIDGET_MOVE_DOWN, widgetOrder: widget.widgetOrder}))}><i className="fa fa-arrow-down"></i></button>
+
                 <select className="form-control" value={widget.widgetType}
                         onChange={e =>
                             dispatch({
@@ -246,8 +251,7 @@ const Widget = ({widget, preview, dispatch}) => {
 
                     <button className="btn btn-primary" onClick={e => (
                         dispatch({type: DELETE_WIDGET, id: widget.id})
-                    )}>Delete</button>
-
+                    )}><i className="fa fa-times"></i></button>
                 </form>
             </div>
             <div>

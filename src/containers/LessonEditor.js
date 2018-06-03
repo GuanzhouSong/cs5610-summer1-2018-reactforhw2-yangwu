@@ -46,19 +46,35 @@ export default class LessonEditor extends React.Component {
     }
 
 
-    render() {
-        return(
-        <div>
+    // render() {
+    //     return(
+    //     <div>
+    //
+    //         <div className="row">
+    //             <div className="col-8">
+    //                 <Provider store={store}>
+    //                 <App lessonId={this.props.match.params.lessonId}/>
+    //                 </Provider>
+    //             </div>
+    //
+    //         </div>
+    //     </div>
+    // );}}
 
-            <div className="row">
-                <div className="col-8">
-                    <Provider store={store}>
-                    <App lessonId={this.props.match.params.lessonId}/>
-                    </Provider>
-                </div>
+    render() {
+    return(
+        <Provider store={store}>
+            <div className="container"><br></br>
+
+
+            <div>
+
+                <App lessonId={this.props.match.params.lessonId}/>
 
             </div>
+
         </div>
-    );}}
+        </Provider>
+);}}
 
     // provider fixme

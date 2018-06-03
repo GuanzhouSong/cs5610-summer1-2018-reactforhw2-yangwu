@@ -7,6 +7,24 @@ export default class ModuleListItem
     }
 
     render() {
+        // return (
+        //     <tr>
+        //         <td>
+        //             <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+        //                 {this.props.module.title}
+        //             </Link>
+        //         </td>
+        //         <td>
+        //             <Link to={`/course/${this.props.courseId}`}>
+        //                 <button onClick=
+        //                             {() => this.props.deleteModule(this.props.module.id)}
+        //                         className="btn btn-primary">Delete</button>
+        //             </Link>
+        //
+        //     </td>
+        //     </tr>
+        // );
+
         return (
             <tr>
                 <td>
@@ -16,12 +34,12 @@ export default class ModuleListItem
                 </td>
                 <td>
                     <Link to={`/course/${this.props.courseId}`}>
-                        <button onClick=
+                        <i onClick=
                                     {() => this.props.deleteModule(this.props.module.id)}
-                                className="btn btn-primary">Delete</button>
+                                className="fa fa-trash"></i>
                     </Link>
 
-            </td>
+                </td>
             </tr>
         );
     }

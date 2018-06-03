@@ -26,6 +26,7 @@ export default class CourseEditor extends React.Component {
     }
 
     render() { return(
+
         <div>
             {/*<h2>Editing course: {this.state.courseId}</h2>*/}
             <div className="row">
@@ -33,10 +34,12 @@ export default class CourseEditor extends React.Component {
                     <ModuleList courseId={this.state.courseId} />
                 </div>
                 <div className="col-8">
-                <Route path="/course/:courseId/module/:moduleId"
-                       component={ModuleEditor}>
-                </Route>
+                    <Route path="/course/:courseId/module/:moduleId"
+                           component={ModuleEditor}>
+                    </Route>
                 </div>
             </div>
         </div>
+
+
     );}}

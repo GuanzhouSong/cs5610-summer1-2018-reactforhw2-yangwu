@@ -8,7 +8,7 @@ import {Provider, connect} from 'react-redux'
 import {createStore} from 'redux'
 import {ADD_COURSE} from "./constants/index"
 import {widgetReducer} from "./reducers/widgetReducer"
-
+import './style/style.css'
 import {addCourse} from "./actions/index"
 import App from './containers/WidgetList'
 

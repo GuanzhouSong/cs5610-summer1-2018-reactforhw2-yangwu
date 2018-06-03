@@ -78,9 +78,11 @@ export default class ModuleList extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 <h3>Module List for Course - {this.state.courseId}</h3>
                 <table className="table">
+
+
                     <thead>
                     <tr>
                         <th><input onChange={this.titleChanged}
@@ -93,14 +95,47 @@ export default class ModuleList extends Component {
                     <i className="fa fa-plus"></i>
                 </button>
                </th>
+
+                        {/*<th> <button type="button" className="btn btn-info btn-lg" onClick={this.createModule}>*/}
+                        {/*<i className="fa fa-plus"></i>*/}
+                            {/*</button>*/}
+
+                        {/*</th>*/}
+
                     </tr>
                     </thead>
-                <tbody>
+
+
+                    <tbody>
                     {this.renderListOfModules()}
                 </tbody>
                 </table>
             </div>
         );
+
+        // return (
+        //     <div className='container'>
+        //         <h3>Module List for Course - {this.state.courseId}</h3>
+        //         <div className="input-group">
+        //
+        //            <input onChange={this.titleChanged}
+        //                            id="123"
+        //                            value={this.state.module.title}
+        //                            placeholder="title"
+        //                            className="form-control"/>
+        //
+        //                <span className="input-group-addon">  <button onClick={this.createModule} className="btn btn-primary btn-block">
+        //                     <i className="fa fa-plus"></i>
+        //                </button></span>
+        //         </div>
+        //
+        //
+        //             <ul className='list-group'>
+        //             {this.renderListOfModules()}
+        //             </ul>
+        //
+        //     </div>
+        // );
     }
 
 }

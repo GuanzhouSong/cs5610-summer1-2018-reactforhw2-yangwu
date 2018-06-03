@@ -95,25 +95,50 @@ export default class LessonTabs extends React.Component {
     render() {
         console.log(this.state);
 
+        // return (
+        //     <div>
+        //         <h3>Lesson List for Module - {this.props.moduleId}</h3>
+        //         <table className="table">
+        //             <thead>
+        //             <tr>
+        //        <th> <input onChange={this.titleChanged}
+        //                value={this.state.lesson.title}
+        //                placeholder="title"
+        //                    className="form-control"/> </th>
+        //         <th><button onClick={this.createLesson} className="btn btn-primary btn-block">
+        //                 <i className="fa fa-plus"></i>
+        //             </button></th>
+        //             </tr>
+        //             </thead>
+        //         <tbody>
+        //             {this.renderListOfLessons()}
+        //         </tbody>
+        //             </table>
+        //     </div>
+        // );
+
         return (
             <div>
                 <h3>Lesson List for Module - {this.props.moduleId}</h3>
-                <table className="table">
-                    <thead>
-                    <tr>
-               <th> <input onChange={this.titleChanged}
-                       value={this.state.lesson.title}
-                       placeholder="title"
-                           className="form-control"/> </th>
-                <th><button onClick={this.createLesson} className="btn btn-primary btn-block">
-                        <i className="fa fa-plus"></i>
-                    </button></th>
-                    </tr>
-                    </thead>
-                <tbody>
+                <div className="input-group">
+
+                        <input onChange={this.titleChanged}
+                                    value={this.state.lesson.title}
+                                    placeholder="title"
+                                    className="form-control"/>
+                        <span className="input-group-addon"><button onClick={this.createLesson} className="btn btn-primary btn-block">
+                            <i className="fa fa-plus"></i>
+                        </button></span>
+
+                </div>
+                <br/>
+                <br/>
+
+
+                    <ul className="nav nav-tabs">
                     {this.renderListOfLessons()}
-                </tbody>
-                    </table>
+                    </ul>
+
             </div>
         );
     }

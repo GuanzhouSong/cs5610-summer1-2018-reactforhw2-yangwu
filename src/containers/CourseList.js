@@ -73,20 +73,37 @@ class CourseList extends React.Component {
                 <table className="table">
                     <thead>
                     <tr>
+
                         <th><input onChange={this.titleChanged}
                                    className="form-control" id="titleFld"
                                    placeholder="New Course Title"/></th>
                         <th><button onClick={this.createCourse}
                                     className="btn btn-primary">Add</button></th>
+
+
                     </tr>
                     </thead>
                 </table>
-                <table className="table">
+                {/*<table className="table">*/}
+                    {/*<thead>*/}
+                    {/*<tr>*/}
+                        {/*<th>Title</th>*/}
+                        {/*<th>Owned by</th>*/}
+                        {/*<th>Last modified by me</th>*/}
+                    {/*</tr>*/}
+                    {/*</thead>*/}
+                    {/*<tbody>*/}
+                    {/*{this.renderCourseRows()}*/}
+                    {/*</tbody>*/}
+
+                {/*</table>*/}
+
+                <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Owned by</th>
-                        <th>Last modified by me</th>
+                        <th scope='col'>Title</th>
+                        <th scope='col'>Owned by</th>
+                        <th scope='col'>Last modified by me</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -94,6 +111,7 @@ class CourseList extends React.Component {
                     </tbody>
 
                 </table>
+
             </div>
         )
     }

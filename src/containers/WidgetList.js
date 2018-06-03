@@ -26,8 +26,8 @@ class WidgetList extends Component {
 
             <div>
 
-                <form className="form-inline">
-                <h2>Widget List </h2>
+                <form className="form-inline float-right">
+                {/*<h2>Widget List </h2>*/}
 
                 <button type="button" className="btn btn-info" hidden={this.props.previewMode}
                         onClick={() => this.props.saveWidgetByLesson(this.props.lessonId)}>
@@ -45,6 +45,9 @@ class WidgetList extends Component {
 
 
                 </form>
+                <br/>
+                <br/>
+                <br/>
 
                 <ul>
 
@@ -56,7 +59,7 @@ class WidgetList extends Component {
                 </ul>
 
 
-                <button className="btn btn-primary" onClick={this.props.addWidget}>Add widget</button>
+                <button className="btn btn-primary float-right" onClick={this.props.addWidget}><i className="fa fa-plus"></i></button>
 
 
                 {/*<button className="btn btn-primary" onClick={this.props.addWidgetByLesson(this.props.lessonId)}>Add widget</button>*/}
