@@ -241,44 +241,11 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             }
 
         case constants.WIDGET_MOVE_UP:
-        {
-            if (action.widgetOrder > 1) {
 
-                let resultList = state.widgets.filter(widget => {
-                    if (widget.widgetOrder === action.widgetOrder - 1) {
-                        widget.widgetOrder++;
-                    }
-                    else if (widget.widgetOrder === action.widgetOrder) {
-                        widget.widgetOrder--;
-                    }
-                    console.log(widget.widgetOrder);
-                    return true;
-                });
-                resultList.move(action.widgetOrder-1, action.widgetOrder-2 );
-                return {widgets: resultList};
-            }
-            return state;
-        }
 
         case constants.WIDGET_MOVE_DOWN:
-        {
-            if (action.widgetOrder < state.widgets.length) {
 
-                let resultList = state.widgets.filter(widget => {
-                    if (widget.widgetOrder === action.widgetOrder) {
-                        widget.widgetOrder++;
-                    }
-                    else if (widget.widgetOrder === action.widgetOrder+1) {
-                        widget.widgetOrder--;
-                    }
-                    console.log(widget.widgetOrder);
-                    return true;
-                });
-                resultList.move(action.widgetOrder-1, action.widgetOrder);
-                return {widgets: resultList};
-            }
-            return state;
-        }
+
 
 
         default:
