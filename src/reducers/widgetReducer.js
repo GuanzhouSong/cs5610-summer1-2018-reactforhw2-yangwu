@@ -243,6 +243,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.WIDGET_MOVE_UP:
 
 
+
         case constants.WIDGET_MOVE_DOWN:
 
 
